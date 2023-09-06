@@ -9,7 +9,7 @@ public class Contact {
     int zipcode;
     long phoneNo;
     String email;
-    
+
 
     public Contact(String firstName, String lastName, String address, String city, String state, int zipcode, long phoneNo, String email) {
         this.firstName = firstName;
@@ -76,5 +76,19 @@ public class Contact {
 
     public void setPhoneNo(long phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipcode=" + zipcode +
+                ", phoneNo=" + phoneNo +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
