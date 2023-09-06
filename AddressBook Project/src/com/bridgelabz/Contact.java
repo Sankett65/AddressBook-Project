@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.util.ArrayList;
+
 public class Contact {
     String firstName;
     String lastName;
@@ -91,4 +93,9 @@ public class Contact {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+
+
+
+
 }
