@@ -19,7 +19,9 @@ public class Main {
 
         while (true) {
             System.out.println("\nOption 1 :- To Add the Contact" +
-                    "\nOption 2 :- To Edit the Contact");
+                    "\nOption 2 :- To Edit the Contact" +
+                    "\nOption 3 :- To Remove the Contact" +
+                    "\nOption 4 :- To Exit");
             System.out.print("Enter the Option: ");
             int option = sc.nextInt();
 
@@ -64,6 +66,18 @@ public class Main {
                     }
                 }
                 System.out.println(list);
+            } else if (option == 3) {
+                Scanner ss = new Scanner(System.in);
+                System.out.print("Enter The First Name: ");
+                String str1 = ss.nextLine();
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).firstName.equals(str1)) {
+                        list.remove(i);
+                    }
+                }
+                System.out.println(list);
+            } else if (option == 4) {
+                break;
             }
         }
 
