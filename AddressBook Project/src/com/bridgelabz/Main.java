@@ -1,7 +1,9 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
     public static void edit(ArrayList<Contact> list, String x, long pn) {
@@ -14,6 +16,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to the Address Book");
         ArrayList<Contact> list = new ArrayList<>();
+        Set list1= new HashSet<>();
 
         Scanner sc  = new Scanner(System.in);
 
@@ -52,6 +55,9 @@ public class Main {
                 String s8 = em.nextLine();
 
                 list.add(new Contact(s1, s2, s3, s4, s5, s6, s7, s8));
+                for (int i =0;i<list.size();i++){
+                    list1.add(list.get(i));
+                }
                 System.out.println(list);
 
             }
@@ -82,6 +88,7 @@ public class Main {
         }
 
 
+        System.out.println(list1);
 
     }
 
