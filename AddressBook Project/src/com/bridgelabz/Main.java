@@ -6,30 +6,35 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
-    public static void edit(ArrayList<Contact> list, String x, long pn) {
-        for (Contact contact : list) {
-            if (contact.getFirstName().equals(x)) {
-                contact.setPhoneNo(pn);
-            }
-        }
-    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to the Address Book");
-        ArrayList<Contact> list = new ArrayList<>();
-        Set list1= new HashSet<>();
+        AddressBook addressBook= new AddressBook();
+        AddressBookManager addressBookManager=new AddressBookManager();
 
         Scanner sc  = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nOption 1 :- To Add the Contact" +
-                    "\nOption 2 :- To Edit the Contact" +
-                    "\nOption 3 :- To Remove the Contact" +
-                    "\nOption 4 :- To Exit");
+            System.out.println("\nOption 1 :- To create AddressBook" +
+                    "\nOption 2 :- To add the Contact"+
+                    "\nOption 3 :- To Edit the Contact" +
+                    "\nOption 4 :- To Remove the Contact" +
+                    "\nOption 5 :- To Exit");
             System.out.print("Enter the Option: ");
             int option = sc.nextInt();
 
-            if (option == 1) {
+            if (option==1){
+                System.out.print("Enter the name of the new address book: ");
+                Scanner scc = new Scanner(System.in);
+                String addressBookName = scc.nextLine();
+                addressBookManager.createAddressBook(addressBookName);
+
+            }else if (option == 2) {
                 Scanner fn = new Scanner(System.in);
+
+                System.out.print("Enter Address Book name: ");
+                String addressBookName = fn.nextLine();
+
                 System.out.print("\nEnter First Name: ");
                 String s1 = fn.nextLine();
                 Scanner ln = new Scanner(System.in);
@@ -54,42 +59,41 @@ public class Main {
                 System.out.print("Enter Email: ");
                 String s8 = em.nextLine();
 
-                list.add(new Contact(s1, s2, s3, s4, s5, s6, s7, s8));
-                for (int i =0;i<list.size();i++){
-                    list1.add(list.get(i));
-                }
-                System.out.println(list);
+                addressBook.addContact(new Contact(s1,s2,s3,s4,s5,s6,s7,s8));
+                addressBookManager.createAddressBook(addressBookName,new Contact(s1,s2,s3,s4,s5,s6,s7,s8));
+
+                System.out.println(addressBook.list);
 
             }
-            else if (option == 2) {
+            else if (option == 3) {
                 Scanner ss = new Scanner(System.in);
                 System.out.print("Enter The First Name: ");
                 String str1 = ss.nextLine();
 
-                for (int i = 0; i < list.size(); i++) {
-                    if (list.get(i).firstName.equals(str1)) {
-                        Main.edit(list,str1,00000);
+                for (int i = 0; i < addressBook.list.size(); i++) {
+                    if (addressBook.list.get(i).firstName.equals(str1)) {
+                        addressBook.setContact(str1,00000);
                     }
                 }
-                System.out.println(list);
-            } else if (option == 3) {
+                System.out.println(addressBook.list);
+            } else if (option == 4) {
                 Scanner ss = new Scanner(System.in);
                 System.out.print("Enter The First Name: ");
                 String str1 = ss.nextLine();
-                for (int i = 0; i < list.size(); i++) {
-                    if (list.get(i).firstName.equals(str1)) {
-                        list.remove(i);
+                for (int i = 0; i < addressBook.list.size(); i++) {
+                    if (addressBook.list.get(i).firstName.equals(str1)) {
+                        addressBook.list.remove(i);
                     }
                 }
-                System.out.println(list);
-            } else if (option == 4) {
+                System.out.println(addressBook.list);
+            } else if (option == 5) {
+                addressBookManager.listAddressBooks();
+
+            } else if (option==6) {
                 break;
             }
         }
-
-
-        System.out.println(list1);
+        Scanner scc = new Scanner(System.in);
 
     }
-
 }
