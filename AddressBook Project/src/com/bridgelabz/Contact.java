@@ -1,6 +1,6 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Contact {
     String firstName;
@@ -93,9 +93,83 @@ public class Contact {
                 ", email='" + email + '\'' +
                 '}';
     }
+}
+
+class AddressBook{
+    String name;
+   List<Contact> list ;
+
+    public AddressBook(String name) {
+        this.name=name;
+        list=new ArrayList<>();
+    }
+
+    public AddressBook(){
+       list=new ArrayList<>();
+    }
 
 
 
+    public void addContact( Contact contact){
+        list.add(contact);
+    }
 
+    public void setContact( String x, long pn){
+        for (Contact contact : list) {
+            if (contact.getFirstName().equals(x)) {
+                contact.setPhoneNo(pn);
+            }
+        }
+    }
+
+    public void removeContact(Contact contact){
+        list.remove(contact);
+    }
+
+    public List<Contact> getContacts() {
+        return list;
+    }
+}
+
+class AddressBookManager {
+     Map<String, AddressBook> addressBooks;
+
+    public AddressBookManager() {
+        this.addressBooks = new HashMap<>();
+    }
+
+    public void createAddressBook(String name) {
+        if (!addressBooks.containsKey(name)) {
+            AddressBook addressBook = new AddressBook(name);
+            addressBooks.put(name, addressBook);
+            System.out.println("Address book '" + name + "' created successfully.");
+        } else {
+            System.out.println("An address book with the name '" + name + "' already exists.");
+        }
+    }
+
+    public void createAddressBook(String name,Contact contact) {
+        if (!addressBooks.containsKey(name)) {
+            AddressBook addressBook = new AddressBook(name);
+            addressBook.addContact(contact);
+            System.out.println("Address Book '" + name + "' created and Below is the list of Contact.");
+        } else {
+            System.out.println("Address Book '" + name + "' already exists.");
+        }
+    }
+
+    public AddressBook getAddressBook(String name) {
+        return addressBooks.get(name);
+    }
+
+    public void listAddressBooks() {
+        System.out.println("Available Address Books:");
+        for (String name : addressBooks.keySet()) {
+            System.out.println("- " + name);
+        }
+    }
 
 }
+
+
+
